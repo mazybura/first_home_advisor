@@ -174,3 +174,4 @@ cython_debug/
 .pypirc
 
 src/utils
+2023_public_lar.csv
