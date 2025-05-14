@@ -1,0 +1,8 @@
+age,employment_type,monthly_income,monthly_expenses,existing_loans,own_contribution,property_value,dependents,target
+28,permanent,8000,2500,0,120000,500000,0,1
+35,business,10000,4000,500,80000,450000,2,1
+30,freelance,6000,3000,300,50000,400000,0,0
+42,permanent,7500,4000,1000,40000,600000,1,0
+26,permanent,9000,2500,0,100000,350000,0,1
+38,freelance,5000,2800,0,60000,300000,0,1
+45,business,12000,6000,2000,30000,700000,3,0
