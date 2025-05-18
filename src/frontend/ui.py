@@ -31,7 +31,7 @@ def flag_switcher():
 
 Lang = Literal["pl", "gb"]
 
-st.set_page_config(page_title="FirstHome Advisor", layout="centered")
+st.set_page_config(page_title="First Home Advisor", layout="centered")
 
 if "lang" not in st.session_state:
     st.session_state.lang = st.query_params.get("lang", "pl")
@@ -47,7 +47,7 @@ flag_en = Image.open("src/frontend/assets/flag_gb.png")
 
 translations = {
     "pl": {
-        "title": "🏡 FirstHome Advisor",
+        "title": "🏡 Doradca pierwszego mieszkania w Polsce",
         "subtitle": "Oceń swoją gotowość do zakupu pierwszego mieszkania na kredyt.",
         "form_button": "Sprawdź zdolność",
         "age": "Wiek",
@@ -65,7 +65,7 @@ translations = {
         "recommendations": "📝 Rekomendacje",
     },
     "gb": {
-        "title": "🏡 FirstHome Advisor",
+        "title": "🏡 First Home Advisor in Poland",
         "subtitle": "Check your financial readiness to buy your first home with a mortgage.",
         "form_button": "Check Mortgage Readiness",
         "age": "Age",
@@ -110,6 +110,15 @@ employment_labels = {
         "freelance": "Freelance",
         "business": "Business",
     },
+}
+
+category_labels = {
+    "pl": {
+        "ready": "Gotowy",
+        "almost ready": "Prawie gotowy",
+        "not ready": "Niegotowy",
+    },
+    "en": {"ready": "Ready", "almost ready": "Almost ready", "not ready": "Not ready"},
 }
 
 
@@ -160,7 +169,10 @@ if submitted:
         controller = AppController()
         result = controller.assess_user(user_data)
 
-        st.success(f"**{t('result', lang)}:** {result['category'].capitalize()}")
+        translated_category = category_labels[lang].get(
+            result["category"].lower(), result["category"]
+        )
+        st.success(f"**{t('result', lang)}:** {translated_category}")
         st.metric(t("dti", lang), f"{result['dti']:.2f}")
         st.metric(t("credit", lang), f"{result['max_credit']:.0f} PLN")
         st.metric(t("confidence", lang), f"{result['confidence'] * 100:.1f} %")
